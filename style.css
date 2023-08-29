@@ -16,6 +16,21 @@
     }
 }
 
+@keyframes background-move {
+    0% {
+        transform: rotate(0deg);
+    }
+    38.5%{
+        transform: rotate(270deg);
+    }
+    62.5% {
+        transform: rotate(90deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -79,6 +94,7 @@ main {
     left: 50%;
     z-index: -1;
     box-shadow: 0 0 40px 30px #004585;
+    animation: fade-in 1s ease-in-out 1;
     border-radius: 100%;
     transform: scale(3);
 }
@@ -92,22 +108,7 @@ main {
     box-shadow: 0 0 40px 30px #003246;
     border-radius: 100%;
     transform: scale(3);
-    animation: background-move 10s ease-in-out 20;
-}
-
-@keyframes background-move {
-    0% {
-        transform: rotate(0deg);
-    }
-    38.5%{
-        transform: rotate(270deg);
-    }
-    62.5% {
-        transform: rotate(90deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+    animation: background-move 10s ease-in-out infinite, fade-in 1s ease-in-out 1;
 }
 
 footer {
