@@ -12,8 +12,8 @@ canvas.height = window.innerHeight;
 const context = canvas.getContext("2d");
 
 let mouse = {
-  x: 0,
-  y: 0,
+  x: undefined,
+  y: undefined,
 };
 
 window.addEventListener("mousemove", (e) => {
@@ -22,8 +22,7 @@ window.addEventListener("mousemove", (e) => {
 });
 
 let line = (x, y, endX, endY, darkness) => {
-  const length = Math.hypot(x - endX, y - endY);
-  const origin = { x, y, endX, endY, length };
+  const origin = { x, y, endX, endY };
   let darknessdx = 1;
   let dx = 0;
   let dy = 0;
@@ -82,6 +81,21 @@ let line = (x, y, endX, endY, darkness) => {
       endDy += endForces.fy;
     }
 
+    // origin pull
+    const originForces = calcOriginForce(x, y, origin.x, origin.y);
+    const originEndForces = calcOriginForce(endX, endY, origin.endX, origin.endY);
+
+    dx += originForces.fx;
+    dy += originForces.fy;
+    endDx += originEndForces.fx;
+    endDy += originEndForces.fy;
+
+    // slow over time
+    dx *= 0.9;
+    dy *= 0.9;
+    endDx *= 0.9;
+    endDy *= 0.9;
+
     x += dx;
     y += dy;
     endX += endDx;
@@ -94,8 +108,21 @@ let line = (x, y, endX, endY, darkness) => {
 
     const distance = Math.hypot(x0, y0);
     const mouseAngle = Math.atan2(y0, x0);
-    const magnitude = Math.min(1 / ((distance/10) ** 2), 0.3)/10;
+    const magnitude = Math.min(1 / (distance/100), 0.3);
   
+    const fx = magnitude * (Math.cos(mouseAngle));
+    const fy = magnitude * (Math.sin(mouseAngle));
+    return {fx, fy};
+  }
+
+  function calcOriginForce(x1, y1, x2, y2) {
+    const x0 = x1 - x2;
+    const y0 = y1 - y2;
+
+    const distance = Math.hypot(x0, y0);
+    const mouseAngle = Math.atan2(y0, x0);
+    const magnitude = -Math.min(distance/100, 0.5);
+
     const fx = magnitude * (Math.cos(mouseAngle));
     const fy = magnitude * (Math.sin(mouseAngle));
     return {fx, fy};
