@@ -22,8 +22,13 @@ window.addEventListener("mousemove", (e) => {
 });
 
 let line = (x, y, endX, endY, darkness) => {
-  let origin = { x, y, endX, endY };
+  const length = Math.hypot(x - endX, y - endY);
+  const origin = { x, y, endX, endY, length };
   let darknessdx = 1;
+  let dx = 0;
+  let dy = 0;
+  let endDx = 0;
+  let endDy = 0;
 
   function draw() {
     context.beginPath();
@@ -43,6 +48,7 @@ let line = (x, y, endX, endY, darkness) => {
   }
 
   function update() {
+    // glowing effect code
     if (Math.random() < 0.3) {
       darkness += darknessdx;
     } 
@@ -52,6 +58,47 @@ let line = (x, y, endX, endY, darkness) => {
     } else if (darkness < 4) {
       darknessdx = 1;
     }
+
+    // get midpoint distance
+    const midX = x + (endX - x)/2;
+    const midY = y + (endY - y)/2;
+    const mouseDistance = Math.hypot(midX - mouse.x, midY - mouse.y);
+
+    // mouse glow
+    if(mouseDistance < 80) {
+      darkness += 80/mouseDistance;
+    }
+
+    darkness = Math.max(Math.min(darkness, 25), 3);
+
+    // mouse push
+    if(mouseDistance < 100) {
+      const forces = calcMouseForce(x, y, mouse.x, mouse.y);
+      const endForces = calcMouseForce(endX, endY, mouse.x, mouse.y)
+
+      dx += forces.fx;
+      dy += forces.fy;
+      endDx += endForces.fx;
+      endDy += endForces.fy;
+    }
+
+    x += dx;
+    y += dy;
+    endX += endDx;
+    endY += endDy;
+  }
+
+  function calcMouseForce(x1, y1, x2, y2) {
+    const x0 = x1 - x2;
+    const y0 = y1 - y2;
+
+    const distance = Math.hypot(x0, y0);
+    const mouseAngle = Math.atan2(y0, x0);
+    const magnitude = Math.min(1 / ((distance/10) ** 2), 0.3)/10;
+  
+    const fx = magnitude * (Math.cos(mouseAngle));
+    const fy = magnitude * (Math.sin(mouseAngle));
+    return {fx, fy};
   }
 
   return {
@@ -69,12 +116,12 @@ let lineArray;
 
 function generateLines() {
   lineArray = [];
-
-  const totalIterations = window.innerWidth;
+  const area = window.innerWidth * window.innerHeight;
+  const totalIterations = area/1000;
   for (let i = 0; i < totalIterations; i++) {
     let x = Number.parseInt(Math.random() * window.innerWidth);
     let y = Number.parseInt(Math.random() * window.innerHeight);
-    let length = Math.random() * 25 + 10;
+    let length = Math.random() * 50 + 10;
     let angle = Math.random() * 2 * Math.PI;
     let endX = x + Number.parseInt(Math.cos(angle) * length);
     let endY = y + Number.parseInt(Math.sin(angle) * length);
@@ -82,6 +129,20 @@ function generateLines() {
 
     lineArray.push(line(x, y, endX, endY, darkness));
   }
+
+  /* Alternate Style - lines stretch long
+  const totalIterations = area/2500;
+  for (let i = 0; i < totalIterations; i++) {
+    let x = Number.parseInt(Math.random() * window.innerWidth);
+    let y = Number.parseInt(Math.random() * window.innerHeight);
+    let length = Math.random() * 1000 + 100;
+    let angle = Math.random() * 3 * Math.PI;
+    let endX = x + Number.parseInt(Math.cos(angle) * length);
+    let endY = y + Number.parseInt(Math.sin(angle) * length);
+    let darkness = Number.parseInt(Math.random() * 13 + 3);
+
+    lineArray.push(line(x, y, endX, endY, darkness));
+  } */
 }
 
 function drawLines() {
