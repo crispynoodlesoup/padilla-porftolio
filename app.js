@@ -22,7 +22,8 @@ window.addEventListener("mousemove", (e) => {
 });
 
 let line = (x, y, endX, endY, darkness) => {
-  origin = { x, y, endX, endY };
+  let origin = { x, y, endX, endY };
+  let darknessdx = 1;
 
   function draw() {
     context.beginPath();
@@ -42,7 +43,15 @@ let line = (x, y, endX, endY, darkness) => {
   }
 
   function update() {
-    
+    if (Math.random() < 0.3) {
+      darkness += darknessdx;
+    } 
+
+    if(darkness > 15) {
+      darknessdx = -1;      
+    } else if (darkness < 4) {
+      darknessdx = 1;
+    }
   }
 
   return {
@@ -69,7 +78,7 @@ function generateLines() {
     let angle = Math.random() * 2 * Math.PI;
     let endX = x + Number.parseInt(Math.cos(angle) * length);
     let endY = y + Number.parseInt(Math.sin(angle) * length);
-    let darkness = Number.parseInt(Math.random() * 11 + 5);
+    let darkness = Number.parseInt(Math.random() * 13 + 3);
 
     lineArray.push(line(x, y, endX, endY, darkness));
   }
