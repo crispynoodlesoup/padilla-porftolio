@@ -14,11 +14,20 @@ const context = canvas.getContext("2d");
 let mouse = {
   x: undefined,
   y: undefined,
+  isDown: false,
 };
 
 window.addEventListener("mousemove", (e) => {
   mouse.x = e.x;
   mouse.y = e.y;
+});
+
+window.addEventListener("mousedown", (e) => {
+  mouse.isDown = true;
+});
+
+window.addEventListener("mouseup", (e) => {
+  mouse.isDown = false;
 });
 
 let line = (x, y, endX, endY, darkness) => {
@@ -52,7 +61,7 @@ let line = (x, y, endX, endY, darkness) => {
       darkness += darknessdx;
     } 
 
-    if(darkness > 15) {
+    if(darkness > 18) {
       darknessdx = -1;      
     } else if (darkness < 4) {
       darknessdx = 1;
@@ -82,19 +91,21 @@ let line = (x, y, endX, endY, darkness) => {
     }
 
     // origin pull
-    const originForces = calcOriginForce(x, y, origin.x, origin.y);
-    const originEndForces = calcOriginForce(endX, endY, origin.endX, origin.endY);
+    if(!mouse.isDown) {
+      const originForces = calcOriginForce(x, y, origin.x, origin.y);
+      const originEndForces = calcOriginForce(endX, endY, origin.endX, origin.endY);
 
-    dx += originForces.fx;
-    dy += originForces.fy;
-    endDx += originEndForces.fx;
-    endDy += originEndForces.fy;
+      dx += originForces.fx;
+      dy += originForces.fy;
+      endDx += originEndForces.fx;
+      endDy += originEndForces.fy;
+    }
 
     // slow over time
-    dx *= 0.9;
-    dy *= 0.9;
-    endDx *= 0.9;
-    endDy *= 0.9;
+    dx *= 0.95;
+    dy *= 0.95;
+    endDx *= 0.95;
+    endDy *= 0.95;
 
     x += dx;
     y += dy;
@@ -108,7 +119,7 @@ let line = (x, y, endX, endY, darkness) => {
 
     const distance = Math.hypot(x0, y0);
     const mouseAngle = Math.atan2(y0, x0);
-    const magnitude = Math.min(1 / (distance/100), 0.3);
+    const magnitude = Math.min(1 / (distance/200), 1);
   
     const fx = magnitude * (Math.cos(mouseAngle));
     const fy = magnitude * (Math.sin(mouseAngle));
@@ -121,7 +132,7 @@ let line = (x, y, endX, endY, darkness) => {
 
     const distance = Math.hypot(x0, y0);
     const mouseAngle = Math.atan2(y0, x0);
-    const magnitude = -Math.min(distance/100, 0.5);
+    const magnitude = -Math.min(distance/10, 1);
 
     const fx = magnitude * (Math.cos(mouseAngle));
     const fy = magnitude * (Math.sin(mouseAngle));
@@ -144,15 +155,15 @@ let lineArray;
 function generateLines() {
   lineArray = [];
   const area = window.innerWidth * window.innerHeight;
-  const totalIterations = area/1000;
+  const totalIterations = area/1200;
   for (let i = 0; i < totalIterations; i++) {
     let x = Number.parseInt(Math.random() * window.innerWidth);
     let y = Number.parseInt(Math.random() * window.innerHeight);
-    let length = Math.random() * 50 + 10;
+    let length = Math.random() * 60 + 10;
     let angle = Math.random() * 2 * Math.PI;
     let endX = x + Number.parseInt(Math.cos(angle) * length);
     let endY = y + Number.parseInt(Math.sin(angle) * length);
-    let darkness = Number.parseInt(Math.random() * 13 + 3);
+    let darkness = Number.parseInt(Math.random() * 20);
 
     lineArray.push(line(x, y, endX, endY, darkness));
   }
