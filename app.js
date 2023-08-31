@@ -39,10 +39,12 @@ let line = (x, y, endX, endY, darkness) => {
   let endDy = 0;
 
   function draw() {
+    context.lineWidth = 1.5;
+    context.strokeStyle = `hsl(201, 100%, ${darkness}%)`;
+
     context.beginPath();
     context.moveTo(x, y);
     context.lineTo(endX, endY);
-    context.strokeStyle = `hsl(201, 100%, ${darkness}%)`;
     context.stroke();
 
     // circles at ends
@@ -61,7 +63,7 @@ let line = (x, y, endX, endY, darkness) => {
       darkness += darknessdx;
     } 
 
-    if(darkness > 18) {
+    if(darkness > 14) {
       darknessdx = -1;      
     } else if (darkness < 4) {
       darknessdx = 1;
@@ -156,15 +158,15 @@ let lineArray;
 function generateLines() {
   lineArray = [];
   const area = window.innerWidth * window.innerHeight;
-  const totalIterations = area/1200;
+  const totalIterations = area/2400;
   for (let i = 0; i < totalIterations; i++) {
     let x = Number.parseInt(Math.random() * window.innerWidth);
     let y = Number.parseInt(Math.random() * window.innerHeight);
-    let length = Math.random() * 60 + 10;
+    let length = Math.random() * 140 + 20;
     let angle = Math.random() * 2 * Math.PI;
     let endX = x + Number.parseInt(Math.cos(angle) * length);
     let endY = y + Number.parseInt(Math.sin(angle) * length);
-    let darkness = Number.parseInt(Math.random() * 20);
+    let darkness = Number.parseInt(Math.random() * 16);
 
     lineArray.push(line(x, y, endX, endY, darkness));
   }
