@@ -152,6 +152,7 @@ let line = (x, y, endX, endY, darkness) => {
 
 let lineArray;
 
+// generates info for lines and fills lineArray
 function generateLines() {
   lineArray = [];
   const area = window.innerWidth * window.innerHeight;
