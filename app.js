@@ -167,20 +167,6 @@ function generateLines() {
 
     lineArray.push(line(x, y, endX, endY, darkness));
   }
-
-  /* Alternate Style - lines stretch long
-  const totalIterations = area/2500;
-  for (let i = 0; i < totalIterations; i++) {
-    let x = Number.parseInt(Math.random() * window.innerWidth);
-    let y = Number.parseInt(Math.random() * window.innerHeight);
-    let length = Math.random() * 1000 + 100;
-    let angle = Math.random() * 3 * Math.PI;
-    let endX = x + Number.parseInt(Math.cos(angle) * length);
-    let endY = y + Number.parseInt(Math.sin(angle) * length);
-    let darkness = Number.parseInt(Math.random() * 13 + 3);
-
-    lineArray.push(line(x, y, endX, endY, darkness));
-  } */
 }
 
 function drawLines() {
