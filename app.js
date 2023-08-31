@@ -119,7 +119,7 @@ let line = (x, y, endX, endY, darkness) => {
 
     const distance = Math.hypot(x0, y0);
     const mouseAngle = Math.atan2(y0, x0);
-    const magnitude = Math.min(1 / (distance/200), 1);
+    const magnitude = Math.min(1 / (distance/50), 0.8);
   
     const fx = magnitude * (Math.cos(mouseAngle));
     const fy = magnitude * (Math.sin(mouseAngle));
@@ -132,7 +132,7 @@ let line = (x, y, endX, endY, darkness) => {
 
     const distance = Math.hypot(x0, y0);
     const mouseAngle = Math.atan2(y0, x0);
-    const magnitude = -Math.min(distance/10, 1);
+    const magnitude = -Math.min(distance/10, 0.8);
 
     const fx = magnitude * (Math.cos(mouseAngle));
     const fy = magnitude * (Math.sin(mouseAngle));
@@ -190,10 +190,24 @@ function drawLines() {
   });
 }
 
+function drawBlur() {
+  let centerWidth = window.innerWidth / 2;
+  let centerHeight = window.innerHeight / 2;
+  let SIZE = 200;
+  let radgrad = context.createRadialGradient(centerWidth,centerHeight,0,centerWidth,centerHeight,SIZE);
+  radgrad.addColorStop(0, '#004166');
+  radgrad.addColorStop(1, '#00416600');
+
+  // draw shape
+  context.fillStyle = radgrad;
+  context.fillRect(0,0,window.innerWidth,window.innerHeight);
+}
+
 let circleX = 50;
 function animate() {
   context.clearRect(0, 0, window.innerWidth, window.innerHeight);
   drawLines();
+  drawBlur();
 
   requestAnimationFrame(animate);
 }
