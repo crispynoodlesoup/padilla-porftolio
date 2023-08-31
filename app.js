@@ -102,10 +102,10 @@ let line = (x, y, endX, endY, darkness) => {
     }
 
     // slow over time
-    dx *= 0.95;
-    dy *= 0.95;
-    endDx *= 0.95;
-    endDy *= 0.95;
+    dx *= 0.92;
+    dy *= 0.92;
+    endDx *= 0.92;
+    endDy *= 0.92;
 
     x += dx;
     y += dy;
@@ -223,3 +223,13 @@ window.addEventListener("resize", () => {
   generateLines();
   drawLines();
 });
+
+window.onscroll = function() { handleNav() };
+
+function handleNav() {
+  if (document.documentElement.scrollTop > 10) {
+    document.querySelector("nav").className = "scrolled";
+  } else {
+    document.querySelector("nav").className = "";
+  }
+}
