@@ -180,9 +180,14 @@ function drawLines() {
 function drawBlur() {
   let centerWidth = window.innerWidth / 2;
   let centerHeight = window.innerHeight / 2;
-  let SIZE = 225;
+  let SIZE;
+  if(window.innerWidth > 450) {
+    SIZE = 280;
+  } else {
+    SIZE = 200;
+  }
   let radgrad = context.createRadialGradient(centerWidth,centerHeight,0,centerWidth,centerHeight,SIZE);
-  radgrad.addColorStop(0, '#004166');
+  radgrad.addColorStop(0, '#004166cc');
   radgrad.addColorStop(1, '#00416600');
 
   // draw shape
