@@ -147,9 +147,16 @@ main {
   animation-delay: 0.3s;
 }
 
+.hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
 .about {
   background-color: #040411;
-  padding: 64px 48px;
+  padding: 64px 96px 0;
   display: grid;
   justify-content: center;
   grid-auto-rows: min-content;
@@ -169,7 +176,7 @@ main {
   border-radius: 50%;
   border: 5px solid rgb(13, 40, 90);
   background-image: url("./myExtendedFace3.png");
-  background-position: 50% 20%;
+  background-position: 50% 0%;
   background-size: 110%;
 }
 
@@ -185,13 +192,6 @@ main {
   color: white;
 }
 
-.hero-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-
 footer {
   background-color: black;
   display: flex;
@@ -200,7 +200,29 @@ footer {
   padding: 16px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
+  .about h2 {
+    grid-column: 1 / 2;
+  }
+
+  .about-img {
+    grid-row: 1 / 2;
+    height: 240px;
+    width: 240px;
+  }
+
+  .about {
+    background-color: #040411;
+    padding: 64px 32px 0;
+    justify-items: center;
+    grid-auto-rows: min-content;
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 500px) {
   .nav-links {
     gap: 12px;
   }
@@ -215,23 +237,5 @@ footer {
 
   .hero-text {
     font-size: 16px;
-  }
-
-  .about h2 {
-    grid-column: 1 / 2;
-  }
-
-  .about-img {
-    grid-row: 1 / 2;
-  }
-
-  .about {
-    background-color: #040411;
-    padding: 64px 48px;
-    justify-items: center;
-    grid-auto-rows: min-content;
-    grid-template-columns: 1fr;
-    row-gap: 16px;
-    text-align: center;
   }
 }
