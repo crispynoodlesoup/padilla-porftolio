@@ -19,7 +19,7 @@ let mouse = {
 
 window.addEventListener("mousemove", (e) => {
   mouse.x = e.x;
-  mouse.y = e.y;
+  mouse.y = e.y + document.documentElement.scrollTop;
 });
 
 window.addEventListener("mousedown", (e) => {
@@ -221,7 +221,7 @@ window.addEventListener("resize", () => {
 window.onscroll = function() { handleNav() };
 
 function handleNav() {
-  if (document.documentElement.scrollTop > 10) {
+  if (document.documentElement.scrollTop > 100) {
     document.querySelector("nav").className = "scrolled";
   } else {
     document.querySelector("nav").className = "";
