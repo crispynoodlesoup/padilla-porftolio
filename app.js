@@ -183,10 +183,10 @@ function drawBlur() {
   let centerWidth = window.innerWidth / 2;
   let centerHeight = window.innerHeight / 2;
   let SIZE;
-  if(window.innerWidth > 450) {
+  if(window.innerWidth > 600) {
     SIZE = 280;
   } else {
-    SIZE = 200;
+    SIZE = 220;
   }
   let radgrad = context.createRadialGradient(centerWidth,centerHeight,0,centerWidth,centerHeight,SIZE);
   radgrad.addColorStop(0, '#004166cc');
