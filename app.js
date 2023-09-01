@@ -59,7 +59,7 @@ let line = (x, y, endX, endY, darkness) => {
 
   function update() {
     // glowing effect code
-    if (Math.random() < 0.3) {
+    if (Math.random() < 0.2) {
       darkness += darknessdx;
     } 
 
