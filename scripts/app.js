@@ -338,6 +338,8 @@ function displaySelectedImage() {
   skillsList.find((skill) => skill.img === img).display();
 }
 
+displaySelectedImage();
+
 function handleRightSkillButton() {
   if (!allowScroll) return; // if animation in progress, return
   allowScroll = false;
