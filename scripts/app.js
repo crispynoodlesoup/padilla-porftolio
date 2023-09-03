@@ -281,7 +281,7 @@ const skillsList = [
     "As my weapon of choice for coding competitions, I'm extremely comfortable writing in java. I even won 3rd in State UIL for knowing this language as well as I do!"),
   skill("HTML5_Badge.svg",
     "HTML",
-    "Surprise surprise, I can write HTML. It's basic, but I always make sure to follow best practices."),
+    "Surprise surprise, I can write HTML. It's basic, but I still don't skip out on best practices."),
   skill("CSS3_logo.svg",
     "CSS",
     "CSS is one of my favorite parts of web dev, not for the mess of code that comes with it, but for the crisp UIs it allows me to make!"),

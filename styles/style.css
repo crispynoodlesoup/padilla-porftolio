@@ -303,8 +303,8 @@ main {
 
 .skills-controls div {
   position: relative;
-  height: 32px;
-  width: 32px;
+  height: 36px;
+  width: 36px;
   font-size: 20px;
   font-weight: 800;
   background-color: #222f46;
@@ -314,6 +314,7 @@ main {
 }
 
 .left-skill-control::before {
+  font-size: 24px;
   content: "<";
   position: absolute;
   top: 50%;
@@ -324,6 +325,7 @@ main {
 }
 
 .right-skill-control::before {
+  font-size: 24px;
   content: ">";
   position: absolute;
   top: 50%;
@@ -387,9 +389,21 @@ footer {
     padding: 64px 32px;
   }
 
+  .skills-controls {
+    gap: 16px;
+  }
+
   .skills-controls div {
-    height: 40px;
-    width: 40px;
+    height: 48px;
+    width: 48px;
+  }
+
+  .left-skill-control::before {
+    font-size: 28px;
+  }
+  
+  .right-skill-control::before {
+    font-size: 28px;
   }
 }
 
