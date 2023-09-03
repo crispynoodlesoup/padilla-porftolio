@@ -232,17 +232,17 @@ function handleNav() {
 const skillsDiv = document.querySelector(".skill-imgs");
 
 const imgs = [
+  "icon-square-big.svg",
+  "logo-logomark.svg",
+  "Wordpress-Logo.svg",
+  "Tux.svg",
+  "Java-Logo.svg",
   "HTML5_Badge.svg",
   "CSS3_logo.svg",
   "Unofficial_JavaScript_logo_2.svg",
   "Node.js_logo.svg",
   "Git-Icon-1788C.svg",
   "Npm-logo.svg",
-  "icon-square-big.svg",
-  "logo-logomark.svg",
-  "Wordpress-Logo.svg",
-  "Tux.svg",
-  "Java-Logo.svg",
 ];
 
 // append each img to skillsDiv
@@ -259,7 +259,12 @@ imgs.forEach((img) => {
 const leftSkillButton = document.querySelector(".left-skill-control");
 const rightSkillButton = document.querySelector(".right-skill-control");
 
+let allowScroll = true;
+
 rightSkillButton.addEventListener("click", () => {
+  if(!allowScroll) return; // if animation in progress, return
+  allowScroll = false;
+  
   const firstChild = skillsDiv.firstChild;
 
   //move first child to the end
@@ -269,10 +274,14 @@ rightSkillButton.addEventListener("click", () => {
   skillsDiv.classList.add("animate-scroll-right");
   setTimeout(() => {
     skillsDiv.classList.remove("animate-scroll-right");
+    allowScroll = true;
   }, 300)
 });
 
 leftSkillButton.addEventListener("click", () => {
+  if(!allowScroll) return; // if animation in progress, return
+  allowScroll = false;
+
   const lastChild = skillsDiv.lastChild;
 
   //move first child to the end
@@ -282,5 +291,6 @@ leftSkillButton.addEventListener("click", () => {
   skillsDiv.classList.add("animate-scroll-left");
   setTimeout(() => {
     skillsDiv.classList.remove("animate-scroll-left");
+    allowScroll = true;
   }, 300)
 });
