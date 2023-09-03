@@ -269,7 +269,7 @@ const skillsList = [
     "Another simple, but powerful tool I'm comfortable using."),
   skill("logo-logomark.svg",
     "Firebase",
-    "For many of my earlier projects, having a free and simple backend service was easy way to get started, and so Firebase has become a service I'm very familiar with."),
+    "For many of my earlier projects, having a free and simple backend service was easy way to get started, so Firebase has become a service I'm very familiar with."),
   skill("Wordpress-Logo.svg",
     "Wordpress",
     "The very first website I built, for my high school robotics team, was a full deep dive into Wordpress. It's not my strongest suit, but it is another tool I'm capable of handling."),
