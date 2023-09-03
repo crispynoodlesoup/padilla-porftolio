@@ -1,3 +1,4 @@
+const assetsDir = "./assets";
 const glowCircles = [...document.querySelectorAll(".background-glow-animated")];
 
 for (let i = 0; i < glowCircles.length; i++) {
@@ -163,7 +164,7 @@ let lineArray;
 function generateLines() {
   lineArray = [];
   const area = window.innerWidth * window.innerHeight;
-  const totalIterations = area / 2400;
+  const totalIterations = Math.min(area / 2400, 500); // cap at 500 for performance
   for (let i = 0; i < totalIterations; i++) {
     let x = Number.parseInt(Math.random() * window.innerWidth);
     let y = Number.parseInt(Math.random() * window.innerHeight);
@@ -244,27 +245,66 @@ function handleNav() {
 
 // skill section
 const skillsDiv = document.querySelector(".skill-imgs");
+const skillTitle = document.querySelector(".skill-title");
+const skillText = document.querySelector(".skill-text");
 
-const imgs = [
-  "icon-square-big.svg",
-  "logo-logomark.svg",
-  "Wordpress-Logo.svg",
-  "Tux.svg",
-  "Java-Logo.svg",
-  "HTML5_Badge.svg",
-  "CSS3_logo.svg",
-  "Unofficial_JavaScript_logo_2.svg",
-  "Node.js_logo.svg",
-  "Git-Icon-1788C.svg",
-  "Npm-logo.svg",
+const skill = (img, title, text) => {
+  const imagePath = `${assetsDir}/${img}`;
+
+  function display() {
+    skillTitle.innerText = title;
+    skillText.innerText = text;
+  }
+
+  return {
+    imagePath,
+    img,
+    display,
+  }
+};
+
+const skillsList = [
+  skill("icon-square-big.svg",
+    "Webpack",
+    "webao"),
+  skill("logo-logomark.svg",
+    "Firebase",
+    "wepoacj"),
+  skill("Wordpress-Logo.svg",
+    "Wordpress",
+    "wepoacj"),
+  skill("Tux.svg",
+    "Linux",
+    "wepoacj"),
+  skill("Java-Logo.svg",
+    "Java",
+    "wepoacj"),
+  skill("HTML5_Badge.svg",
+    "HTML",
+    "Surprise surpise, I can write HTML! It's basic, but still, I make sure to follow best practices and use semantic tags."),
+  skill("CSS3_logo.svg",
+    "CSS",
+    "wepoacj"),
+  skill("Unofficial_JavaScript_logo_2.svg",
+    "Javascript",
+    "wepoacj"),
+  skill("Node.js_logo.svg",
+    "Node.js",
+    "wepoacj"),
+  skill("Git-Icon-1788C.svg",
+    "Git",
+    "wepoacj"),
+  skill("Npm-logo.svg",
+    "npm",
+    "wepoacj"),
 ];
 
 // append each img to skillsDiv
-imgs.forEach((img) => {
+skillsList.forEach((skill) => {
   const imgWrapper = document.createElement("div");
   imgWrapper.classList.add("skill-img-wrapper");
   const imgElement = document.createElement("img");
-  imgElement.src = `./assets/${img}`;
+  imgElement.src = skill.imagePath;
   imgWrapper.appendChild(imgElement);
 
   skillsDiv.appendChild(imgWrapper);
@@ -290,15 +330,25 @@ rightSkillButton.addEventListener("mouseleave", () => {
 
 let allowScroll = true;
 
+function displaySelectedImage() {
+  // display the correct skill info
+  const imageSource = document.querySelector(".skill-img-wrapper:nth-child(6) img").src;
+  const imgSplit = imageSource.split("/");
+  const img = imgSplit[imgSplit.length - 1];
+  skillsList.find((skill) => skill.img === img).display();
+}
+
 function handleRightSkillButton() {
   if (!allowScroll) return; // if animation in progress, return
   allowScroll = false;
 
   const firstChild = skillsDiv.firstChild;
 
-  //move first child to the end
+  // move first child to the end
   skillsDiv.removeChild(firstChild);
   skillsDiv.appendChild(firstChild);
+
+  displaySelectedImage();
 
   skillsDiv.classList.add("animate-scroll-right");
   setTimeout(() => {
@@ -318,9 +368,11 @@ function handleLeftSkillButton() {
 
   const lastChild = skillsDiv.lastChild;
 
-  //move first child to the end
+  // move last child to the beginning
   skillsDiv.removeChild(skillsDiv.lastChild);
   skillsDiv.prepend(lastChild);
+
+  displaySelectedImage();
 
   skillsDiv.classList.add("animate-scroll-left");
   setTimeout(() => {
