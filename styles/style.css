@@ -202,18 +202,51 @@ main {
   padding: 64px 96px;
 }
 
-.skill-imgs {
+.skill-imgs-container {
+  height: 120px;
   position: relative;
   width: 100%;
   margin-top: 16px;
+  overflow: hidden;
+}
+
+.skill-imgs {
+  height: 120px;
   display: flex;
   gap: 8px;
-  overflow: hidden;
   justify-content: center;
   align-items: center;
+  z-index: -1;
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translate(100px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.animate-scroll-right {
+  animation: scroll-right 0.2s ease-in-out 1;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translate(-100px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 0.2s ease-in-out 1;
 }
 
 .skill-img-wrapper {
+  transition: all 0.2s ease-in-out;
   flex: 0 0 80px;
   height: 80px;
   width: 80px;
@@ -226,6 +259,7 @@ main {
 }
 
 .skill-img-wrapper img {
+  transition: all 0.2s ease-in-out;
   max-height: 80px;
   max-width: 80px;
   background-color: #ffffff;
@@ -242,7 +276,7 @@ main {
   max-width: 100px;
 }
 
-.skill-imgs::before {
+.skills-fade-left {
   top: 0;
   left: 0;
   position: absolute;
@@ -252,12 +286,12 @@ main {
   content: "";
 }
 
-.skill-imgs::after {
+.skills-fade-right {
   top: 0;
   right: 0;
   position: absolute;
   height: 120px;
-  width: 300px;
+  width: 400px;
   background-image: linear-gradient(to right, #00000000, #0d0d20);
   content: "";
 }
@@ -286,6 +320,8 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 .right-skill-control::before {
@@ -295,6 +331,8 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 .skills-controls div:hover {

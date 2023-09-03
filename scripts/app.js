@@ -227,3 +227,60 @@ function handleNav() {
     document.querySelector("nav").className = "";
   }
 }
+
+// skill section
+const skillsDiv = document.querySelector(".skill-imgs");
+
+const imgs = [
+  "HTML5_Badge.svg",
+  "CSS3_logo.svg",
+  "Unofficial_JavaScript_logo_2.svg",
+  "Node.js_logo.svg",
+  "Git-Icon-1788C.svg",
+  "Npm-logo.svg",
+  "icon-square-big.svg",
+  "logo-logomark.svg",
+  "Wordpress-Logo.svg",
+  "Tux.svg",
+  "Java-Logo.svg",
+];
+
+// append each img to skillsDiv
+imgs.forEach((img) => {
+  const imgWrapper = document.createElement("div");
+  imgWrapper.classList.add("skill-img-wrapper");
+  const imgElement = document.createElement("img");
+  imgElement.src = `./assets/${img}`;
+  imgWrapper.appendChild(imgElement);
+
+  skillsDiv.appendChild(imgWrapper);
+});
+
+const leftSkillButton = document.querySelector(".left-skill-control");
+const rightSkillButton = document.querySelector(".right-skill-control");
+
+rightSkillButton.addEventListener("click", () => {
+  const firstChild = skillsDiv.firstChild;
+
+  //move first child to the end
+  skillsDiv.removeChild(firstChild);
+  skillsDiv.appendChild(firstChild);
+
+  skillsDiv.classList.add("animate-scroll-right");
+  setTimeout(() => {
+    skillsDiv.classList.remove("animate-scroll-right");
+  }, 300)
+});
+
+leftSkillButton.addEventListener("click", () => {
+  const lastChild = skillsDiv.lastChild;
+
+  //move first child to the end
+  skillsDiv.removeChild(skillsDiv.lastChild);
+  skillsDiv.prepend(lastChild);
+
+  skillsDiv.classList.add("animate-scroll-left");
+  setTimeout(() => {
+    skillsDiv.classList.remove("animate-scroll-left");
+  }, 300)
+});
