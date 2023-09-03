@@ -295,25 +295,52 @@ main {
   background-image: linear-gradient(to right, #00000000, #0d0d20);
 }
 
-.skills-controls {
+.skill-info {
+  position: relative;
+  border-radius: 4px;
   margin-top: 16px;
-  display: flex;
-  gap: 8px;
+  max-width: 540px;
+  width: 100%;
+  text-align: center;
+  padding: 16px 32px;
+  background-color: #222f46;
 }
 
-.skills-controls div {
-  position: relative;
-  height: 36px;
-  width: 36px;
+.skill-text {
+  margin-top: 8px;
+}
+
+.skill-info button {
+  position: absolute;
+  top: 50%;
+  height: 40px;
+  width: 40px;
   font-size: 20px;
   font-weight: 800;
   background-color: #222f46;
+  border: 2px solid #0d0d20;
   border-radius: 50%;
   user-select: none;
   -webkit-user-drag: none;
 }
 
+.skill-info button:hover {
+  background-color: #172742;
+  cursor: pointer;
+}
+
+.left-skill-control {
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.right-skill-control {
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
 .left-skill-control::before {
+  color: white;
   font-size: 24px;
   content: "<";
   position: absolute;
@@ -325,6 +352,7 @@ main {
 }
 
 .right-skill-control::before {
+  color: white;
   font-size: 24px;
   content: ">";
   position: absolute;
@@ -333,25 +361,6 @@ main {
   transform: translate(-50%, -50%);
   -webkit-user-drag: none;
   user-select: none;
-}
-
-.skills-controls div:hover {
-  background-color: #172742;
-  cursor: pointer;
-}
-
-.skill-info {
-  border-radius: 4px;
-  margin-top: 16px;
-  max-width: 540px;
-  width: 100%;
-  text-align: center;
-  padding: 16px;
-  background-color: #222f46;
-}
-
-.skill-text {
-  margin-top: 8px;
 }
 
 footer {
@@ -389,11 +398,7 @@ footer {
     padding: 64px 32px;
   }
 
-  .skills-controls {
-    gap: 16px;
-  }
-
-  .skills-controls div {
+  .skill-info button {
     height: 48px;
     width: 48px;
   }
