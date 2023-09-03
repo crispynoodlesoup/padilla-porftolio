@@ -263,6 +263,8 @@ main {
   max-height: 80px;
   max-width: 80px;
   background-color: #ffffff;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .skill-img-wrapper:nth-child(6) {
@@ -311,6 +313,8 @@ main {
   background-color: #263857;
   padding: 8px;
   border-radius: 50%;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .left-skill-control::before {

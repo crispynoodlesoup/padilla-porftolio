@@ -61,30 +61,30 @@ let line = (x, y, endX, endY, darkness) => {
     // glowing effect code
     if (Math.random() < 0.2) {
       darkness += darknessdx;
-    } 
+    }
 
-    if(darkness > 14) {
-      darknessdx = -1;      
+    if (darkness > 14) {
+      darknessdx = -1;
     } else if (darkness < 4) {
       darknessdx = 1;
     }
 
     // get midpoint distance
-    const midX = x + (endX - x)/2;
-    const midY = y + (endY - y)/2;
+    const midX = x + (endX - x) / 2;
+    const midY = y + (endY - y) / 2;
     const mouseDistance = Math.hypot(midX - mouse.x, midY - mouse.y);
 
     // mouse glow
-    if(mouseDistance < 80) {
-      darkness += 80/mouseDistance;
+    if (mouseDistance < 80) {
+      darkness += 80 / mouseDistance;
     }
 
     darkness = Math.max(Math.min(darkness, 25), 3);
 
     // mouse push
-    if(mouseDistance < 100) {
+    if (mouseDistance < 100) {
       const forces = calcMouseForce(x, y, mouse.x, mouse.y);
-      const endForces = calcMouseForce(endX, endY, mouse.x, mouse.y)
+      const endForces = calcMouseForce(endX, endY, mouse.x, mouse.y);
 
       dx += forces.fx;
       dy += forces.fy;
@@ -93,9 +93,14 @@ let line = (x, y, endX, endY, darkness) => {
     }
 
     // origin pull
-    if(!mouse.isDown) {
+    if (!mouse.isDown) {
       const originForces = calcOriginForce(x, y, origin.x, origin.y);
-      const originEndForces = calcOriginForce(endX, endY, origin.endX, origin.endY);
+      const originEndForces = calcOriginForce(
+        endX,
+        endY,
+        origin.endX,
+        origin.endY
+      );
 
       dx += originForces.fx;
       dy += originForces.fy;
@@ -121,11 +126,11 @@ let line = (x, y, endX, endY, darkness) => {
 
     const distance = Math.hypot(x0, y0);
     const mouseAngle = Math.atan2(y0, x0);
-    const magnitude = Math.min(1 / (distance/50), 0.8);
-  
-    const fx = magnitude * (Math.cos(mouseAngle));
-    const fy = magnitude * (Math.sin(mouseAngle));
-    return {fx, fy};
+    const magnitude = Math.min(1 / (distance / 50), 0.8);
+
+    const fx = magnitude * Math.cos(mouseAngle);
+    const fy = magnitude * Math.sin(mouseAngle);
+    return { fx, fy };
   }
 
   function calcOriginForce(x1, y1, x2, y2) {
@@ -134,11 +139,11 @@ let line = (x, y, endX, endY, darkness) => {
 
     const distance = Math.hypot(x0, y0);
     const mouseAngle = Math.atan2(y0, x0);
-    const magnitude = -Math.min(distance/10, 0.8);
+    const magnitude = -Math.min(distance / 10, 0.8);
 
-    const fx = magnitude * (Math.cos(mouseAngle));
-    const fy = magnitude * (Math.sin(mouseAngle));
-    return {fx, fy};
+    const fx = magnitude * Math.cos(mouseAngle);
+    const fy = magnitude * Math.sin(mouseAngle);
+    return { fx, fy };
   }
 
   return {
@@ -158,7 +163,7 @@ let lineArray;
 function generateLines() {
   lineArray = [];
   const area = window.innerWidth * window.innerHeight;
-  const totalIterations = area/2400;
+  const totalIterations = area / 2400;
   for (let i = 0; i < totalIterations; i++) {
     let x = Number.parseInt(Math.random() * window.innerWidth);
     let y = Number.parseInt(Math.random() * window.innerHeight);
@@ -183,18 +188,25 @@ function drawBlur() {
   let centerWidth = window.innerWidth / 2;
   let centerHeight = window.innerHeight / 2;
   let SIZE;
-  if(window.innerWidth > 600) {
+  if (window.innerWidth > 600) {
     SIZE = 280;
   } else {
     SIZE = 220;
   }
-  let radgrad = context.createRadialGradient(centerWidth,centerHeight,0,centerWidth,centerHeight,SIZE);
-  radgrad.addColorStop(0, '#004166cc');
-  radgrad.addColorStop(1, '#00416600');
+  let radgrad = context.createRadialGradient(
+    centerWidth,
+    centerHeight,
+    0,
+    centerWidth,
+    centerHeight,
+    SIZE
+  );
+  radgrad.addColorStop(0, "#004166cc");
+  radgrad.addColorStop(1, "#00416600");
 
   // draw shape
   context.fillStyle = radgrad;
-  context.fillRect(0,0,window.innerWidth,window.innerHeight);
+  context.fillRect(0, 0, window.innerWidth, window.innerHeight);
 }
 
 let circleX = 50;
@@ -218,7 +230,9 @@ window.addEventListener("resize", () => {
   drawLines();
 });
 
-window.onscroll = function() { handleNav() };
+window.onscroll = function () {
+  handleNav();
+};
 
 function handleNav() {
   if (document.documentElement.scrollTop > 100) {
@@ -259,12 +273,27 @@ imgs.forEach((img) => {
 const leftSkillButton = document.querySelector(".left-skill-control");
 const rightSkillButton = document.querySelector(".right-skill-control");
 
+let isMouseOverLeftSkill = false;
+let isMouseOverRightSkill = false;
+leftSkillButton.addEventListener("mouseover", () => {
+  isMouseOverLeftSkill = true;
+});
+leftSkillButton.addEventListener("mouseleave", () => {
+  isMouseOverLeftSkill = false;
+});
+rightSkillButton.addEventListener("mouseover", () => {
+  isMouseOverRightSkill = true;
+});
+rightSkillButton.addEventListener("mouseleave", () => {
+  isMouseOverRightSkill = false;
+});
+
 let allowScroll = true;
 
-rightSkillButton.addEventListener("click", () => {
-  if(!allowScroll) return; // if animation in progress, return
+function handleRightSkillButton() {
+  if (!allowScroll) return; // if animation in progress, return
   allowScroll = false;
-  
+
   const firstChild = skillsDiv.firstChild;
 
   //move first child to the end
@@ -275,11 +304,16 @@ rightSkillButton.addEventListener("click", () => {
   setTimeout(() => {
     skillsDiv.classList.remove("animate-scroll-right");
     allowScroll = true;
-  }, 300)
-});
 
-leftSkillButton.addEventListener("click", () => {
-  if(!allowScroll) return; // if animation in progress, return
+    setTimeout(() => {
+      if (mouse.isDown && isMouseOverRightSkill)
+        handleRightSkillButton();
+    }, 20);
+  }, 300);
+}
+
+function handleLeftSkillButton() {
+  if (!allowScroll) return; // if animation in progress, return
   allowScroll = false;
 
   const lastChild = skillsDiv.lastChild;
@@ -292,5 +326,13 @@ leftSkillButton.addEventListener("click", () => {
   setTimeout(() => {
     skillsDiv.classList.remove("animate-scroll-left");
     allowScroll = true;
-  }, 300)
-});
+
+    setTimeout(() => {
+      if (mouse.isDown && isMouseOverLeftSkill)
+        handleLeftSkillButton();
+    }, 20);
+  }, 300);
+}
+
+rightSkillButton.addEventListener("mousedown", handleRightSkillButton);
+leftSkillButton.addEventListener("mousedown", handleLeftSkillButton);
