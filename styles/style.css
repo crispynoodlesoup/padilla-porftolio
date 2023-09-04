@@ -380,7 +380,7 @@ main {
   width: 940px;
   margin-top: 16px;
   display: flex;
-  gap: 16px;
+  gap: 24px;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -388,12 +388,13 @@ main {
 
 .project {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 8px;
   overflow: hidden;
+  opacity: 0.7;
 
-  transition: scale 0.3s ease-in-out;
+  transition: scale 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .project > img {
@@ -403,44 +404,12 @@ main {
 }
 
 .project:hover {
+  opacity: 1;
   scale: 1.1;
   cursor: pointer;
 }
 
-.project-text {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 1;
-  
-  padding: 24px;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.349);
-  display: grid;
-  place-content: center;
-  text-align: center;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.project:hover .project-text {
-  opacity: 0;
-}
-
-.project-title {
-  font-size: 20px;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-.project-description {
-  font-size: 14px;
-  margin-top: 4px;
-  max-width: 400px;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
+/* 
 .project-link {
   position: absolute;
   top: 8px;
@@ -453,6 +422,7 @@ main {
   opacity: 0;
   transition: opacity 0.3s;
 }
+*/
 
 footer {
   background-color: black;
