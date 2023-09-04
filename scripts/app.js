@@ -249,7 +249,7 @@ const skillTitle = document.querySelector(".skill-title");
 const skillText = document.querySelector(".skill-text");
 
 const skill = (img, title, text) => {
-  const imagePath = `${assetsDir}/${img}`;
+  const imagePath = `${assetsDir}/skill-icons/${img}`;
 
   function display() {
     skillTitle.innerText = title;

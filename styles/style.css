@@ -388,9 +388,9 @@ main {
 
 .project {
   position: relative;
-  width: 120px;
-  height: 120px;
-  border-radius: 12px;
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
   overflow: hidden;
 
   transition: scale 0.3s ease-in-out;
@@ -404,18 +404,19 @@ main {
 
 .project:hover {
   scale: 1.1;
+  cursor: pointer;
 }
 
 .project-text {
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0;
+  opacity: 1;
   
   padding: 24px;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.658);
+  background-color: rgba(0, 0, 0, 0.349);
   display: grid;
   place-content: center;
   text-align: center;
@@ -423,7 +424,7 @@ main {
 }
 
 .project:hover .project-text {
-  opacity: 1;
+  opacity: 0;
 }
 
 .project-title {
@@ -449,7 +450,8 @@ main {
 .project-link img {
   height: 24px;
   width: 24px;
-  filter: invert(1);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 footer {
