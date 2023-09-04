@@ -377,10 +377,10 @@ main {
 
 .projects-list {
   max-width: 100%;
-  width: 1200px;
-  margin-top: 32px;
+  width: 940px;
+  margin-top: 16px;
   display: flex;
-  gap: 48px;
+  gap: 16px;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -388,8 +388,9 @@ main {
 
 .project {
   position: relative;
-  width: 360px;
-  height: 240px;
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
   overflow: hidden;
 
   transition: scale 0.3s ease-in-out;
@@ -426,11 +427,13 @@ main {
 }
 
 .project-title {
+  font-size: 20px;
   user-select: none;
   -webkit-user-drag: none;
 }
 
 .project-description {
+  font-size: 14px;
   margin-top: 4px;
   max-width: 400px;
   user-select: none;
@@ -441,7 +444,6 @@ main {
   position: absolute;
   top: 8px;
   right: 8px;
-
 }
 
 .project-link img {
