@@ -377,22 +377,22 @@ main {
 
 .projects-list {
   max-width: 100%;
-  width: 830px;
+  width: 940px;
   margin-top: 32px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 48px;
+  align-items: center;
 }
 
 .project {
   display: grid;
-  grid-template-columns: 360px 1fr;
+  grid-template-columns: 360px 360px;
   grid-template-rows: 1fr;
   column-gap: 32px;
 }
 
 .project:nth-child(2n) {
-  grid-template-columns: 1fr 360px;
   text-align: right;
   justify-items: right;
 }
@@ -422,11 +422,8 @@ main {
   align-content: center;
 }
 
-.project-title {
-
-}
-
 .project-description {
+  margin-top: 4px;
   max-width: 400px;
 }
 
