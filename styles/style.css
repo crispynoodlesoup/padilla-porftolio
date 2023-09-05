@@ -383,7 +383,7 @@ main {
   gap: 24px;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
 }
 
 .project {
@@ -403,9 +403,9 @@ main {
   box-shadow: 0 0 12px 6px black;
 }
 
-.project:hover {
-  opacity: 1;
-  transform: translateY(-8px);
+.project:hover:not(.project-select) {
+  opacity: 0.75;
+  transform: translateY(-4px);
   cursor: pointer;
 }
 
