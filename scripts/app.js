@@ -251,6 +251,16 @@ const skillText = document.querySelector(".skill-text");
 const skill = (img, title, text) => {
   const imagePath = `${assetsDir}/skill-icons/${img}`;
 
+  function init() {
+    const imgWrapper = document.createElement("div");
+    imgWrapper.classList.add("skill-img-wrapper");
+    const imgElement = document.createElement("img");
+    imgElement.src = imagePath;
+    imgWrapper.appendChild(imgElement);
+  
+    skillsDiv.appendChild(imgWrapper);
+  }
+
   function display() {
     skillTitle.innerText = title;
     skillText.innerText = text;
@@ -259,6 +269,7 @@ const skill = (img, title, text) => {
   return {
     imagePath,
     img,
+    init,
     display,
   }
 };
@@ -300,15 +311,7 @@ const skillsList = [
 ];
 
 // append each img to skillsDiv
-skillsList.forEach((skill) => {
-  const imgWrapper = document.createElement("div");
-  imgWrapper.classList.add("skill-img-wrapper");
-  const imgElement = document.createElement("img");
-  imgElement.src = skill.imagePath;
-  imgWrapper.appendChild(imgElement);
-
-  skillsDiv.appendChild(imgWrapper);
-});
+skillsList.forEach((skill) => skill.init());
 
 const leftSkillButton = document.querySelector(".left-skill-control");
 const rightSkillButton = document.querySelector(".right-skill-control");
@@ -330,15 +333,13 @@ rightSkillButton.addEventListener("mouseleave", () => {
 
 let allowScroll = true;
 
-function displaySelectedImage() {
+function displaySelectedSkill() {
   // display the correct skill info
   const imageSource = document.querySelector(".skill-img-wrapper:nth-child(6) img").src;
   const imgSplit = imageSource.split("/");
   const img = imgSplit[imgSplit.length - 1];
   skillsList.find((skill) => skill.img === img).display();
 }
-
-displaySelectedImage();
 
 function handleRightSkillButton() {
   if (!allowScroll) return; // if animation in progress, return
@@ -350,7 +351,7 @@ function handleRightSkillButton() {
   skillsDiv.removeChild(firstChild);
   skillsDiv.appendChild(firstChild);
 
-  displaySelectedImage();
+  displaySelectedSkill();
 
   skillsDiv.classList.add("animate-scroll-right");
   setTimeout(() => {
@@ -374,7 +375,7 @@ function handleLeftSkillButton() {
   skillsDiv.removeChild(skillsDiv.lastChild);
   skillsDiv.prepend(lastChild);
 
-  displaySelectedImage();
+  displaySelectedSkill();
 
   skillsDiv.classList.add("animate-scroll-left");
   setTimeout(() => {
@@ -387,6 +388,8 @@ function handleLeftSkillButton() {
     }, 20);
   }, 300);
 }
+
+displaySelectedSkill();
 
 rightSkillButton.addEventListener("mousedown", handleRightSkillButton);
 leftSkillButton.addEventListener("mousedown", handleLeftSkillButton);
