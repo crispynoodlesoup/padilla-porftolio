@@ -377,8 +377,8 @@ main {
 
 .projects-list {
   max-width: 100%;
-  width: 940px;
-  margin-top: 16px;
+  width: 700px;
+  margin-top: 24px;
   display: flex;
   gap: 24px;
   justify-content: center;
@@ -392,9 +392,9 @@ main {
   height: 120px;
   border-radius: 8px;
   overflow: hidden;
-  opacity: 0.7;
+  opacity: 0.6;
 
-  transition: scale 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .project > img {
@@ -405,8 +405,13 @@ main {
 
 .project:hover {
   opacity: 1;
-  scale: 1.1;
+  transform: translateY(-8px);
   cursor: pointer;
+}
+
+.project-select {
+  opacity: 1;
+  transform: translateY(-8px);
 }
 
 /* 
@@ -423,6 +428,27 @@ main {
   transition: opacity 0.3s;
 }
 */
+
+.project-showcase {
+  margin-top: 24px;
+  max-width: 100%;
+  width: 696px;
+  text-align: center;
+  display: grid;
+}
+
+.project-showcase-img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background-size: cover;
+  background-image: url("../../assets/project-pics/faith2fight.PNG");
+}
+
+.project-text {
+  text-align: center;
+  padding: 16px;
+  background-color: #222f46;
+}
 
 footer {
   background-color: black;
