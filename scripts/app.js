@@ -223,14 +223,6 @@ generateLines();
 drawLines();
 animate();
 
-window.addEventListener("resize", () => {
-  context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  generateLines();
-  drawLines();
-});
-
 window.onscroll = function () {
   handleNav();
 };
@@ -474,6 +466,9 @@ const project = (icon, img, title, description) => {
   function select() {
     iconDiv.classList.add("project-select");
     exhibit.classList.add("project-exhibit-select");
+
+    const selectedIndex = projects.findIndex((project) => project.title === title);
+    projectShowcase.style.transform = `translate(${calcShowcaseTransform(selectedIndex)}px)`;
   }
 
   function deselect() {
@@ -481,11 +476,16 @@ const project = (icon, img, title, description) => {
     exhibit.className = "project-exhibit";
   }
 
+  function isSelected() {
+    return iconDiv.classList.contains("project-select");
+  }
+
   return {
     title,
     init,
     select,
     deselect,
+    isSelected,
   };
 };
 
@@ -525,4 +525,24 @@ projects = [
 // initialize all projects
 projects.forEach((project) => project.init());
 
-projects[2].select();
+projects[0].select();
+
+function calcShowcaseTransform(index) {
+  const PROJECT_GAP = 96;
+  const width = projectShowcase.offsetWidth;
+  const scrollWidth = PROJECT_GAP + width;
+
+  const center = (projects.length - 1) / 2;
+  return (center * scrollWidth) - (index * scrollWidth); 
+}
+
+window.addEventListener("resize", () => {
+  context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  generateLines();
+  drawLines();
+  
+  const selectedIndex = projects.findIndex((project) => project.isSelected());
+  projectShowcase.style.transform = `translate(${calcShowcaseTransform(selectedIndex)}px)`;
+});
