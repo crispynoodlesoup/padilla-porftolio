@@ -454,22 +454,6 @@ main {
   transition: all 0.3s;
 }
 
-.project-exhibit-img:hover {
-  background-size: 103% 103%;
-  opacity: 0.9;
-  cursor: pointer;
-}
-
-.project-exhibit-img:hover::before {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 40px;
-  height: 40px;
-  background-image: url("../assets/open-in-new.svg");
-  content: "";
-}
-
 .project-exhibit-text {
   text-align: center;
   padding: 16px;
