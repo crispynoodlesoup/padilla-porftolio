@@ -414,7 +414,7 @@ const projectShowcase = document.querySelector(".project-showcase");
 
 let projects;
 
-const project = (icon, img, title, description) => {
+const project = (icon, img, title, description, link) => {
   const iconPath = `${assetsDir}/project-pics/${icon}`;
   const imagePath = `${assetsDir}/project-pics/${img}`;
   let exhibit;
@@ -441,9 +441,15 @@ const project = (icon, img, title, description) => {
 
     const exhibitText = document.createElement("div");
     exhibitText.classList.add("project-exhibit-text");
-    const exhibitTitle = document.createElement("h3");
-    exhibitTitle.innerText = title;
-    exhibitText.appendChild(exhibitTitle);
+    const projectLink = document.createElement("a");
+    projectLink.href = link;
+    projectLink.target = "_blank";
+    projectLink.innerText = title;
+    projectLink.classList.add("project-link");
+    const openInNew = document.createElement("img");
+    openInNew.src = `${assetsDir}/open-in-new.svg`;
+    projectLink.appendChild(openInNew);
+    exhibitText.appendChild(projectLink);
     const exhibitDescription = document.createElement("p");
     exhibitDescription.innerText = description;
     exhibitText.appendChild(exhibitDescription);
@@ -494,31 +500,36 @@ projects = [
     "faith2fight-logo.png",
     "faith2fight.PNG",
     "Faith2Fight",
-    "exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam."
+    "exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam.",
+    "https://faith2fight.com"
   ),
   project(
     "aero-logo.png",
     "aero.png",
     "Aero Robotics",
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam."
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam.",
+    "https://aerorobotics.club"
   ),
   project(
     "crystalView-logo.png",
     "crystalView.PNG",
     "Crystal View",
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam."
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam.",
+    "https://crystalview-39df5.web.app/"
   ),
   project(
     "etchasketch-logo.png",
     "etchasketch.PNG",
     "Etch-a-Sketch",
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam."
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam.",
+    "https://crispynoodlesoup.github.io/etch-a-sketch/"
   ),
   project(
     "tictactoe-logo.png",
     "tictactoe.PNG",
     "tictactoe",
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam."
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam.",
+    "https://crispynoodlesoup.github.io/tic-tac-toe/"
   ),
 ];
 
@@ -528,7 +539,7 @@ projects.forEach((project) => project.init());
 projects[0].select();
 
 function calcShowcaseTransform(index) {
-  const PROJECT_GAP = 96;
+  const PROJECT_GAP = 80;
   const width = projectShowcase.offsetWidth;
   const scrollWidth = PROJECT_GAP + width;
 
