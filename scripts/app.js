@@ -539,7 +539,7 @@ projects.forEach((project) => project.init());
 projects[0].select();
 
 function calcShowcaseTransform(index) {
-  const PROJECT_GAP = 80;
+  const PROJECT_GAP = 96;
   const width = projectShowcase.offsetWidth;
   const scrollWidth = PROJECT_GAP + width;
 
