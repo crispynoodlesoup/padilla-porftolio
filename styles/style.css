@@ -440,10 +440,12 @@ main {
 }
 
 .project-exhibit {
+  border-radius: 12px;
   grid-row: 1 / 2;
   grid-column: 1 / 2;
   visibility: hidden;
   opacity: 0;
+  overflow: hidden;
 
   transition: opacity 0.3s;
 }
@@ -454,9 +456,28 @@ main {
 }
 
 .project-exhibit-img {
+  position: relative;
   width: 100%;
   aspect-ratio: 3 / 2;
-  background-size: cover;
+  background-size: 100% 100%;
+  background-position: 50% 50%;
+  transition: all 0.3s;
+}
+
+.project-exhibit-img:hover {
+  background-size: 103% 103%;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.project-exhibit-img:hover::before {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  background-image: url("../assets/open-in-new.svg");
+  content: "";
 }
 
 .project-exhibit-text {

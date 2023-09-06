@@ -357,7 +357,9 @@ let allowScroll = true;
 
 function displaySelectedSkill() {
   // display the correct skill info
-  const imageSource = document.querySelector(".skill-img-wrapper:nth-child(6) img").src;
+  const imageSource = document.querySelector(
+    ".skill-img-wrapper:nth-child(6) img"
+  ).src;
   const imgSplit = imageSource.split("/");
   const img = imgSplit[imgSplit.length - 1];
   skillsList.find((skill) => skill.img === img).display();
@@ -438,13 +440,13 @@ const project = (icon, img, title, description) => {
 
     iconDiv.appendChild(iconImg);
     projectsDiv.appendChild(iconDiv);
-    
+
     // make a project exhibit
     const exhibitImg = document.createElement("div");
     exhibitImg.classList.add("project-exhibit-img");
     exhibitImg.style.backgroundImage = `url("${imagePath}")`;
     exhibit.appendChild(exhibitImg);
-    
+
     const exhibitText = document.createElement("div");
     exhibitText.classList.add("project-exhibit-text");
     const exhibitTitle = document.createElement("h3");
@@ -454,7 +456,7 @@ const project = (icon, img, title, description) => {
     exhibitDescription.innerText = description;
     exhibitText.appendChild(exhibitDescription);
     exhibit.appendChild(exhibitText);
-    
+
     projectShowcase.appendChild(exhibit);
 
     setupListeners();
@@ -463,10 +465,10 @@ const project = (icon, img, title, description) => {
   function setupListeners() {
     iconDiv.addEventListener("click", () => {
       projects.forEach((project) => {
-        if(project.title !== title) project.deselect();
+        if (project.title !== title) project.deselect();
       });
       select();
-    })
+    });
   }
 
   function select() {
@@ -497,31 +499,31 @@ projects = [
     "faith2fight-logo.png",
     "faith2fight.PNG",
     "Faith2Fight",
-    "wow aero"
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam."
   ),
   project(
     "aero-logo.png",
     "aero.png",
     "Aero Robotics",
-    "wow aero"
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam."
   ),
   project(
     "crystalView-logo.png",
     "crystalView.PNG",
     "Crystal View",
-    "wow aero"
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam."
   ),
   project(
     "etchasketch-logo.png",
     "etchasketch.PNG",
     "Etch-a-Sketch",
-    "wow aero"
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam."
   ),
   project(
     "tictactoe-logo.png",
     "tictactoe.PNG",
     "tictactoe",
-    "wow aero"
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam."
   ),
 ];
 
