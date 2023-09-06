@@ -437,6 +437,8 @@ const project = (icon, img, title, description, link) => {
     const exhibitImg = document.createElement("div");
     exhibitImg.classList.add("project-exhibit-img");
     exhibitImg.style.backgroundImage = `url("${imagePath}")`;
+    exhibitImg.addEventListener("click", () => window.open(link, "_blank"));
+
     exhibit.appendChild(exhibitImg);
     
     const exhibitText = document.createElement("div");
@@ -494,35 +496,35 @@ projects = [
     "faith2fight-logo.png",
     "faith2fight.PNG",
     "Faith2Fight",
-    "exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam.",
+    "Built with Firebase, Faith2Fight needed a simple organization website to spread their mission and ideals. It was a great experience for me to understand the business side of web development, as it was my first commissioned project.",
     "https://faith2fight.com"
   ),
   project(
     "aero-logo.png",
     "aero.png",
     "Aero Robotics",
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam.",
+    "Aero was my highschool robotics team, which I was very passionate about. Through some inner-determination, I decided to become Aero's sole web developer. Though it's a Wordpress site, I'm still very proud to say it was my first ever website.",
     "https://aerorobotics.club"
   ),
   project(
     "crystalView-logo.png",
     "crystalView.PNG",
     "Crystal View",
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam.",
+    "Crystal View is a product of HackTamu, so keep in mind it was entirely developed in less than a day. As the dedicated front-end developer, the final look of this website was something I was quite proud to have pulled off with so many constraints.",
     "https://crystalview-39df5.web.app/"
   ),
   project(
     "etchasketch-logo.png",
     "etchasketch.PNG",
     "Etch-a-Sketch",
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam.",
+    "One of my earliest projects on the road to becoming a competent web developer, Etch-a-Sketch marked my growth into a new world of possibilities.",
     "https://crispynoodlesoup.github.io/etch-a-sketch/"
   ),
   project(
     "tictactoe-logo.png",
     "tictactoe.PNG",
-    "tictactoe",
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam.",
+    "Tic-Tac-Toe",
+    "Tic-Tac-Toe was the first project to teach me the power and importance of organized code. It's very simple, but still an important project to me.",
     "https://crispynoodlesoup.github.io/tic-tac-toe/"
   ),
 ];
