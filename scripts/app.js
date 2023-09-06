@@ -438,18 +438,12 @@ const project = (icon, img, title, description, link) => {
     exhibitImg.classList.add("project-exhibit-img");
     exhibitImg.style.backgroundImage = `url("${imagePath}")`;
     exhibit.appendChild(exhibitImg);
-
+    
     const exhibitText = document.createElement("div");
     exhibitText.classList.add("project-exhibit-text");
-    const projectLink = document.createElement("a");
-    projectLink.href = link;
-    projectLink.target = "_blank";
-    projectLink.innerText = title;
-    projectLink.classList.add("project-link");
-    const openInNew = document.createElement("img");
-    openInNew.src = `${assetsDir}/open-in-new.svg`;
-    projectLink.appendChild(openInNew);
-    exhibitText.appendChild(projectLink);
+    const exhibitTitle = document.createElement("h3");
+    exhibitTitle.innerText = title;
+    exhibitText.appendChild(exhibitTitle);
     const exhibitDescription = document.createElement("p");
     exhibitDescription.innerText = description;
     exhibitText.appendChild(exhibitDescription);
