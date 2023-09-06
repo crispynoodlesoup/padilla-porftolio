@@ -414,10 +414,11 @@ displaySelectedSkill();
 rightSkillButton.addEventListener("mousedown", handleRightSkillButton);
 leftSkillButton.addEventListener("mousedown", handleLeftSkillButton);
 
-
 // project section code
 const projectsDiv = document.querySelector(".projects-list");
 const projectShowcase = document.querySelector(".project-showcase");
+
+let projects;
 
 const project = (icon, img, title, description) => {
   const iconPath = `${assetsDir}/project-pics/${icon}`;
@@ -428,6 +429,7 @@ const project = (icon, img, title, description) => {
   function init() {
     exhibit = document.createElement("div");
     exhibit.classList.add("project-exhibit");
+
     // place icon in projectList
     iconDiv = document.createElement("div");
     iconDiv.classList.add("project");
@@ -454,24 +456,43 @@ const project = (icon, img, title, description) => {
     exhibit.appendChild(exhibitText);
     
     projectShowcase.appendChild(exhibit);
+
+    setupListeners();
   }
-  
+
+  function setupListeners() {
+    iconDiv.addEventListener("click", () => {
+      projects.forEach((project) => {
+        if(project.title !== title) project.deselect();
+      });
+      select();
+    })
+  }
+
   function select() {
     iconDiv.classList.add("project-select");
-    exhibit.style.visibility = "visible";
+    exhibit.style.opacity = "1";
+    exhibit.classList.add("project-visible");
+  }
+
+  function deselect() {
+    iconDiv.className = "project";
+
+    exhibit.style.opacity = "0";
+    setTimeout(() => {
+      exhibit.className = "project-exhibit";
+    }, 300);
   }
 
   return {
-    iconPath,
-    icon,
-    imagePath,
-    img,
+    title,
     init,
     select,
+    deselect,
   };
 };
 
-const projects = [
+projects = [
   project(
     "faith2fight-logo.png",
     "faith2fight.PNG",
@@ -504,5 +525,7 @@ const projects = [
   ),
 ];
 
+// initialize all projects
 projects.forEach((project) => project.init());
+
 projects[0].select();
