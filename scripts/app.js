@@ -305,7 +305,7 @@ const skillsList = [
   skill(
     "Unofficial_JavaScript_logo_2.svg",
     "Javascript",
-    "I'm very capable using Javascript to build websites, but I'll admit code cleanliness is no easy feat in this language!"
+    "When it come's to vanilla javascript, I'm well within my comfort zone to use it as you would any other programming language."
   ),
   skill(
     "Node.js_logo.svg",
