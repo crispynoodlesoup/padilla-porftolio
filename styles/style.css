@@ -437,14 +437,18 @@ main {
   display: grid;
 }
 
-.project-showcase-img {
+.project-exhibit {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+
+.project-exhibit-img {
   width: 100%;
   aspect-ratio: 3 / 2;
   background-size: cover;
-  background-image: url("../../assets/project-pics/faith2fight.PNG");
 }
 
-.project-text {
+.project-exhibit-text {
   text-align: center;
   padding: 16px;
   background-color: #222f46;
