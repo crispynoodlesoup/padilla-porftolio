@@ -473,17 +473,12 @@ const project = (icon, img, title, description) => {
 
   function select() {
     iconDiv.classList.add("project-select");
-    exhibit.style.opacity = "1";
-    exhibit.classList.add("project-visible");
+    exhibit.classList.add("project-exhibit-select");
   }
 
   function deselect() {
     iconDiv.className = "project";
-
-    exhibit.style.opacity = "0";
-    setTimeout(() => {
-      exhibit.className = "project-exhibit";
-    }, 300);
+    exhibit.className = "project-exhibit";
   }
 
   return {
@@ -499,7 +494,7 @@ projects = [
     "faith2fight-logo.png",
     "faith2fight.PNG",
     "Faith2Fight",
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cum impedit mollitia exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam."
+    "exercitationem, optio, dolores repellendus aliquam cumque libero reprehenderit facilis nostrum iusto similique accusantium voluptate cupiditate asperiores quod quam."
   ),
   project(
     "aero-logo.png",
@@ -530,4 +525,4 @@ projects = [
 // initialize all projects
 projects.forEach((project) => project.init());
 
-projects[0].select();
+projects[2].select();
