@@ -440,6 +440,7 @@ main {
 .project-exhibit {
   grid-row: 1 / 2;
   grid-column: 1 / 2;
+  visibility: hidden;
 }
 
 .project-exhibit-img {

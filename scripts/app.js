@@ -257,7 +257,7 @@ const skill = (img, title, text) => {
     const imgElement = document.createElement("img");
     imgElement.src = imagePath;
     imgWrapper.appendChild(imgElement);
-  
+
     skillsDiv.appendChild(imgWrapper);
   }
 
@@ -271,43 +271,65 @@ const skill = (img, title, text) => {
     img,
     init,
     display,
-  }
+  };
 };
 
 const skillsList = [
-  skill("icon-square-big.svg",
+  skill(
+    "icon-square-big.svg",
     "Webpack",
-    "Another simple, but powerful tool I'm comfortable using."),
-  skill("logo-logomark.svg",
+    "Another simple, but powerful tool I'm comfortable using."
+  ),
+  skill(
+    "logo-logomark.svg",
     "Firebase",
-    "For many of my earlier projects, having a free and simple backend service was easy way to get started, so Firebase has become a service I'm very familiar with."),
-  skill("Wordpress-Logo.svg",
+    "For many of my earlier projects, having a free and simple backend service was easy way to get started, so Firebase has become a service I'm very familiar with."
+  ),
+  skill(
+    "Wordpress-Logo.svg",
     "Wordpress",
-    "The very first website I built, for my high school robotics team, was a full deep dive into Wordpress. It's not my strongest suit, but it is another tool I'm capable of handling."),
-  skill("Tux.svg",
+    "The very first website I built, for my high school robotics team, was a full deep dive into Wordpress. It's not my strongest suit, but it is another tool I'm capable of handling."
+  ),
+  skill(
+    "Tux.svg",
     "Linux",
-    "Having spent a lot of time learning cybersecurity, I'm very familiar with Linux, including writing bash scripts. I also use Ubuntu for development, just for convenience."),
-  skill("Java-Logo.svg",
+    "Having spent a lot of time learning cybersecurity, I'm very familiar with Linux, including writing bash scripts. I also use Ubuntu for development, just for convenience."
+  ),
+  skill(
+    "Java-Logo.svg",
     "Java",
-    "As my weapon of choice for coding competitions, I'm extremely comfortable writing in java. I even won 3rd in State UIL for knowing this language as well as I do!"),
-  skill("HTML5_Badge.svg",
+    "As my weapon of choice for coding competitions, I'm extremely comfortable writing in java. I even won 3rd in State UIL for knowing this language as well as I do!"
+  ),
+  skill(
+    "HTML5_Badge.svg",
     "HTML",
-    "Surprise surprise, I can write HTML. It's basic, but that doesn't mean I skip out on best practices."),
-  skill("CSS3_logo.svg",
+    "Surprise surprise, I can write HTML. It's basic, but that doesn't mean I skip out on best practices."
+  ),
+  skill(
+    "CSS3_logo.svg",
     "CSS",
-    "CSS is one of my favorite languages, not for the mess of code that comes with it, but for the crisp UIs it allows me to make!"),
-  skill("Unofficial_JavaScript_logo_2.svg",
+    "CSS is one of my favorite languages, not for the mess of code that comes with it, but for the crisp UIs it allows me to make!"
+  ),
+  skill(
+    "Unofficial_JavaScript_logo_2.svg",
     "Javascript",
-    "I'm very capable using Javascript to build websites, but I'll admit code cleanliness is no easy feat in this language!"),
-  skill("Node.js_logo.svg",
+    "I'm very capable using Javascript to build websites, but I'll admit code cleanliness is no easy feat in this language!"
+  ),
+  skill(
+    "Node.js_logo.svg",
     "Node.js",
-    "A new addition, it's my first full step into the backend. I'm still an amateur, but it's made me capable of making dynamic, more complex user interfaces than ever before."),
-  skill("Git-Icon-1788C.svg",
+    "A new addition, it's my first full step into the backend. I'm still an amateur, but it's made me capable of making dynamic, more complex user interfaces than ever before."
+  ),
+  skill(
+    "Git-Icon-1788C.svg",
     "Git",
-    "Git is a part of all my projects! Solo or collaborative, it keeps me organized and ready to jump back into old projects."),
-  skill("Npm-logo.svg",
+    "Git is a part of all my projects! Solo or collaborative, it keeps me organized and ready to jump back into old projects."
+  ),
+  skill(
+    "Npm-logo.svg",
     "npm",
-    "Not much more to say than, I know how to use it!"),
+    "Not much more to say than, I know how to use it!"
+  ),
 ];
 
 // append each img to skillsDiv
@@ -359,8 +381,7 @@ function handleRightSkillButton() {
     allowScroll = true;
 
     setTimeout(() => {
-      if (mouse.isDown && isMouseOverRightSkill)
-        handleRightSkillButton();
+      if (mouse.isDown && isMouseOverRightSkill) handleRightSkillButton();
     }, 20);
   }, 300);
 }
@@ -383,8 +404,7 @@ function handleLeftSkillButton() {
     allowScroll = true;
 
     setTimeout(() => {
-      if (mouse.isDown && isMouseOverLeftSkill)
-        handleLeftSkillButton();
+      if (mouse.isDown && isMouseOverLeftSkill) handleLeftSkillButton();
     }, 20);
   }, 300);
 }
@@ -393,3 +413,96 @@ displaySelectedSkill();
 
 rightSkillButton.addEventListener("mousedown", handleRightSkillButton);
 leftSkillButton.addEventListener("mousedown", handleLeftSkillButton);
+
+
+// project section code
+const projectsDiv = document.querySelector(".projects-list");
+const projectShowcase = document.querySelector(".project-showcase");
+
+const project = (icon, img, title, description) => {
+  const iconPath = `${assetsDir}/project-pics/${icon}`;
+  const imagePath = `${assetsDir}/project-pics/${img}`;
+  let exhibit;
+  let iconDiv;
+
+  function init() {
+    exhibit = document.createElement("div");
+    exhibit.classList.add("project-exhibit");
+    // place icon in projectList
+    iconDiv = document.createElement("div");
+    iconDiv.classList.add("project");
+    const iconImg = document.createElement("img");
+    iconImg.src = iconPath;
+
+    iconDiv.appendChild(iconImg);
+    projectsDiv.appendChild(iconDiv);
+    
+    // make a project exhibit
+    const exhibitImg = document.createElement("div");
+    exhibitImg.classList.add("project-exhibit-img");
+    exhibitImg.style.backgroundImage = `url("${imagePath}")`;
+    exhibit.appendChild(exhibitImg);
+    
+    const exhibitText = document.createElement("div");
+    exhibitText.classList.add("project-exhibit-text");
+    const exhibitTitle = document.createElement("h3");
+    exhibitTitle.innerText = title;
+    exhibitText.appendChild(exhibitTitle);
+    const exhibitDescription = document.createElement("p");
+    exhibitDescription.innerText = description;
+    exhibitText.appendChild(exhibitDescription);
+    exhibit.appendChild(exhibitText);
+    
+    projectShowcase.appendChild(exhibit);
+  }
+  
+  function select() {
+    iconDiv.classList.add("project-select");
+    exhibit.style.visibility = "visible";
+  }
+
+  return {
+    iconPath,
+    icon,
+    imagePath,
+    img,
+    init,
+    select,
+  };
+};
+
+const projects = [
+  project(
+    "faith2fight-logo.png",
+    "faith2fight.PNG",
+    "Faith2Fight",
+    "wow aero"
+  ),
+  project(
+    "aero-logo.png",
+    "aero.png",
+    "Aero Robotics",
+    "wow aero"
+  ),
+  project(
+    "crystalView-logo.png",
+    "crystalView.PNG",
+    "Crystal View",
+    "wow aero"
+  ),
+  project(
+    "etchasketch-logo.png",
+    "etchasketch.PNG",
+    "Etch-a-Sketch",
+    "wow aero"
+  ),
+  project(
+    "tictactoe-logo.png",
+    "tictactoe.PNG",
+    "tictactoe",
+    "wow aero"
+  ),
+];
+
+projects.forEach((project) => project.init());
+projects[0].select();
