@@ -553,3 +553,16 @@ window.addEventListener("resize", () => {
   const selectedIndex = projects.findIndex((project) => project.isSelected());
   projectShowcase.style.transform = `translate(${calcShowcaseTransform(selectedIndex)}px)`;
 });
+
+const copyEmailButton = document.querySelector(".copy-email");
+
+function copyEmail() {
+  // copy to clipboard
+  navigator.clipboard.writeText("rafaelgpadilla42@gmail.com");
+
+  // display confirmation
+  copyEmailButton.classList.add("confirm");
+  setTimeout(() => {
+    copyEmailButton.className = "contact-link copy-email"
+  }, 1000);
+}

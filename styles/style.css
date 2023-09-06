@@ -169,7 +169,7 @@ main {
 
 .about {
   background-color: #040411;
-  padding: 64px 96px;
+  padding: 64px 64px;
   display: grid;
   justify-content: center;
   grid-auto-rows: min-content;
@@ -518,6 +518,52 @@ main {
   height: 100%;
   width: calc(50vw - 348px);
   background-image: linear-gradient(to right, #00000000, #0d0d20);
+}
+
+.contact-section {
+    background-color: #040411;
+    padding: 64px 64px;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+}
+
+.contact-link {
+  white-space: nowrap;
+  font-size: 20px;
+  font-weight: 500;
+  width: 64px;
+  margin-top: 24px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.contact-link img {
+  filter: invert(1);
+  height: 24px;
+}
+
+.copy-email::after {
+  position: absolute;
+  transform: translateY(100%);
+  content: "Copied!";
+  background-color: #222f46;
+  padding: 4px;
+  border-radius: 8px;
+
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.confirm::after {
+  opacity: 1;
 }
 
 footer {
