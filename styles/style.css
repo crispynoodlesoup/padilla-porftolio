@@ -313,7 +313,7 @@ main {
   border-radius: 8px;
   margin-top: 16px;
   max-width: 540px;
-  width: 100%;
+  width: calc(100% - 32px);
   text-align: center;
   padding: 16px 32px;
   background-color: #222f46;
@@ -613,7 +613,7 @@ footer {
   }
 
   #experience {
-    padding: 64px 32px;
+    padding: 64px 16px;
   }
 
   .skill-info button {
@@ -635,6 +635,21 @@ footer {
 
   .project-right-fade {
     display: none;
+  }
+  
+  .project-select {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  .project:hover:not(.project-select) {
+    opacity: 0.75;
+    transform: scale(1.02);
+    cursor: pointer;
+  }
+
+  #contact {
+    padding: 64px 16px;
   }
 }
 
@@ -660,16 +675,11 @@ footer {
   }
 
   .projects-list {
-    gap: 16px;
+    gap: 12px;
   }
 
   .project {
     width: 80px;
     height: 80px;
-  }
-  
-  .project-select {
-    opacity: 1;
-    transform: translateY(-4px);
   }
 }
