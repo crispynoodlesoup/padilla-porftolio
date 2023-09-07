@@ -345,11 +345,15 @@ main {
 .left-skill-control {
   left: 0;
   transform: translate(-50%, -50%);
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 .right-skill-control {
   right: 0;
   transform: translate(50%, -50%);
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 .left-skill-control::before {
@@ -442,6 +446,7 @@ main {
   max-width: 100%;
   width: 696px;
   opacity: 0.7;
+  height: fit-content;
 
   transition: opacity 0.3s;
 }
@@ -495,6 +500,11 @@ main {
   background-color: #222f46;
 }
 
+.project-exhibit-text p {
+  margin-top: 8px;
+  line-height: 1.5em;
+}
+
 .project-link {
   font-size: 22px;
   font-weight: 800;
@@ -526,11 +536,11 @@ main {
 }
 
 #contact {
-    background-color: #040411;
-    padding: 64px 64px;
-    display: grid;
-    justify-items: center;
-    text-align: center;
+  background-color: #040411;
+  padding: 64px 64px;
+  display: grid;
+  justify-items: center;
+  text-align: center;
 }
 
 .contact-link {
@@ -614,7 +624,7 @@ footer {
   .left-skill-control::before {
     font-size: 28px;
   }
-  
+
   .right-skill-control::before {
     font-size: 28px;
   }
@@ -622,7 +632,7 @@ footer {
   .project-left-fade {
     display: none;
   }
-  
+
   .project-right-fade {
     display: none;
   }
@@ -643,5 +653,23 @@ footer {
 
   .hero-text {
     font-size: 16px;
+  }
+
+  .projects-header {
+    font-size: 26px;
+  }
+
+  .projects-list {
+    gap: 16px;
+  }
+
+  .project {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .project-select {
+    opacity: 1;
+    transform: translateY(-4px);
   }
 }
