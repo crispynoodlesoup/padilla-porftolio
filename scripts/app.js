@@ -377,7 +377,7 @@ function handleRightSkillButton() {
     setTimeout(() => {
       if (mouse.isDown && isMouseOverRightSkill) handleRightSkillButton();
     }, 20);
-  }, 300);
+  }, 250);
 }
 
 function handleLeftSkillButton() {
