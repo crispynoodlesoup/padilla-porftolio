@@ -400,7 +400,7 @@ function handleLeftSkillButton() {
     setTimeout(() => {
       if (mouse.isDown && isMouseOverLeftSkill) handleLeftSkillButton();
     }, 20);
-  }, 300);
+  }, 250);
 }
 
 displaySelectedSkill();
