@@ -369,9 +369,9 @@ function handleRightSkillButton() {
 
   displaySelectedSkill();
 
-  skillsDiv.classList.add("animate-scroll-right");
+  skillsDiv.className = "skill-imgs animate-scroll-right";
   setTimeout(() => {
-    skillsDiv.classList.remove("animate-scroll-right");
+    skillsDiv.className = "skill-imgs";
     allowScroll = true;
 
     setTimeout(() => {
@@ -392,9 +392,9 @@ function handleLeftSkillButton() {
 
   displaySelectedSkill();
 
-  skillsDiv.classList.add("animate-scroll-left");
+  skillsDiv.className = "skill-imgs animate-scroll-left";
   setTimeout(() => {
-    skillsDiv.classList.remove("animate-scroll-left");
+    skillsDiv.className = "skill-imgs";
     allowScroll = true;
 
     setTimeout(() => {

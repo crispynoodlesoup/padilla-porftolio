@@ -236,12 +236,17 @@ main {
     transform: translate(100px);
   }
   100% {
-    transform: translate(0);
+    transform: translate(0px);
   }
 }
 
 .animate-scroll-right {
-  animation: scroll-right 0.25s ease-in-out 1;
+  transform: translate(100px);
+  animation-name: scroll-right;
+  animation-duration: 0.25s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 @keyframes scroll-left {
@@ -249,12 +254,17 @@ main {
     transform: translate(-100px);
   }
   100% {
-    transform: translate(0);
+    transform: translate(0px);
   }
 }
 
 .animate-scroll-left {
-  animation: scroll-left 0.25s ease-in-out 1;
+  transform: translate(-100px);
+  animation-name: scroll-left;
+  animation-duration: 0.25s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 .skill-img-wrapper {
